@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-""" 
+"""
 >>> python setup.py sphinx_build
 
 """
@@ -8,7 +8,6 @@ __revision__ = "$Id: setup.py 3618 2012-06-18 15:58:17Z pradal $"
 import os, sys
 from setuptools import setup, find_packages
 
-__revision__ = "$Id: setup.py 3618 2012-06-18 15:58:17Z pradal $"
 
 # just an alias
 pj = os.path.join
@@ -34,11 +33,16 @@ setup(
 
     namespace_packages = ['openalea'],
     packages = find_packages('src'),
+    create_namespaces=True,
+    zip_safe=False,
 
+    include_package_data=True,
     package_dir = { '' : 'src'},
     package_data = { '': ["*.rst"]},
     share_dirs = { 'share' : 'share' },
 
+    setup_requires=['openalea.deploy'],
+    dependency_links=['http://openalea.gforge.inria.fr/pi'],
 
     entry_points = {
         "console_scripts": [
@@ -49,7 +53,7 @@ setup(
                  "alea_branch = openalea.misc.alea_branch:main",
                  ],
 
-            "wralea": [ 
+            "wralea": [
                         "openalea.misc.test = openalea.misc_wralea_test",
                         "openalea.misc= openalea.misc_wralea",
             ]
