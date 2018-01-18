@@ -19,8 +19,11 @@
 ###############################################################################
 
 import types
-from IPython.kernel.inprocess.ipkernel import InProcessKernel
-from IPython.kernel.zmq.ipkernel import Kernel as ZMQKernel
+try:
+    from ipykernel.inprocess.ipkernel import InProcessKernel
+except ImportError:
+    from IPython.kernel.inprocess.ipkernel import InProcessKernel
+
 from IPython.core.error import UsageError
 
 

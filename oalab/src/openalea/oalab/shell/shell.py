@@ -513,9 +513,12 @@ def main():
     import signal; signal.signal(signal.SIGINT, signal.SIG_DFL)
 
     shellclass = get_shell_class()
-    interpreterclass = get_interpreter_class()
+    from openalea.core.service.ipython import interpreter
+    interpreter = interpreter()
 
-    ipyinterpreter = interpreterclass()
+    interpreter.user_ns['interp'] = interpreter
+
+    ipyinterpreter = interpreter
     aw = shellclass(ipyinterpreter)
 
     # static resize

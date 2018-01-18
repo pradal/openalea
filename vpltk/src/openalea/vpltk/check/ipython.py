@@ -44,9 +44,9 @@ def has_new_ipython():
     :return: True if user can use IPython. Else False.
     """
     try:
-        from IPython.kernel.inprocess.ipkernel import InProcessKernel
-        from IPython.qt.console.rich_ipython_widget import RichIPythonWidget
-        from IPython.qt.inprocess import QtInProcessKernelManager
+        from ipykernel.inprocess.ipkernel import InProcessKernel
+        from qtconsole.rich_jupyter_widget import RichJupyterWidget
+        from qtconsole.inprocess import QtInProcessKernelManager
         return True
     except ImportError:
         return False
@@ -54,20 +54,20 @@ def has_new_ipython():
 
 def has_ipython_config():
     """
-    Check if User can has IPython 1.0dev not deprecated.
+    Check if User can has IPython 2.0 not deprecated.
 
     :return: True if user can use IPython. Else False.
     """
     try:
-        # Works for IPython 2.x
-        from IPython.config.application import Application
-        from IPython.config.configurable import Configurable
-        from IPython.utils.traitlets import List, Bool, Unicode
+        from traitlets.config.application import Application
+        from traitlets.config.configurable import Configurable
+        from traitlets import List, Bool, Unicode
         return True
     except ImportError:
         try:
-            # Works for IPython 1.x
-            from IPython.config.application import Application, Configurable
+            # Works for IPython 2.x
+            from IPython.config.application import Application
+            from IPython.config.configurable import Configurable
             from IPython.utils.traitlets import List, Bool, Unicode
             return True
         except ImportError:

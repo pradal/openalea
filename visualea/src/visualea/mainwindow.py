@@ -97,16 +97,18 @@ class MainWindow(qt.QtGui.QMainWindow,
         self.splitter.addWidget(self.lowerpane)
 
         # python interpreter
-        try:
-            interpreter = get_interpreter()
-        except NameError:
-            InterpreterClass = get_interpreter_class()
-            interpreter = InterpreterClass()
+        #try:
+        #    interpreter = get_interpreter()
+        #except NameError:
+        #    InterpreterClass = get_interpreter_class()
+        #    interpreter = InterpreterClass()
 
         # interpreter init defered after session init
         shellclass = get_shell_class()
+        interpreter = None
         self.interpreterWidget = shellclass(interpreter,
-                                            cli.get_welcome_msg())
+                                            message=cli.get_welcome_msg())
+        interpreter = self.interpreterWidget.interpreter
 
         GraphOperator.globalInterpreter = interpreter
         self.lowerpane.addTab(self.interpreterWidget, "Python Shell")

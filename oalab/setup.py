@@ -64,8 +64,8 @@ setup(
 
     # Namespace packages creation by deploy
     py_modules=['oalab_postinstall'],
-    # namespace_packages = [namespace],
-    # create_namespaces = False,
+    namespace_packages = [namespace],
+    create_namespaces = False,
     zip_safe=False,
 
     # Dependencies

@@ -62,9 +62,25 @@ class NotebookControlWidget(AbstractControlWidget):
     def _ipython_display_(self):
         return self._w._ipython_display_()
 
-from IPython.html import widgets
+try:
+    import ipywidgets as widgets
+    IntSliderWidget = widgets.IntSlider
+    HTMLWidget = widgets.HTML
+    CheckboxWidget = widgets.Checkbox
+    IntProgressWidget = widgets.IntProgress
+    TextWidget = widgets.Text
+    TextareaWidget = widgets.Textarea
+except ImportError:
+    from IPython.html import widgets
+    IntSliderWidget = widgets.IntSliderWidget
+    HTMLWidget = widgets.HTMLWidget
+    CheckboxWidget = widgets.CheckboxWidget
+    IntProgressWidget = widgets.IntProgressWidget
+    TextWidget = widgets.TextWidget
+    TextareaWidget = widgets.TextareaWidget
+
 available_widgets = {
-    'IInt': [widgets.IntSliderWidget],
+    'IInt': [IntSliderWidget],
     'IStr': [widgets.HTMLWidget],
     'IBool': [widgets.CheckboxWidget],
 }
@@ -77,7 +93,6 @@ preferred_widgets = {
 
     'IStr': {
         'html': widgets.HTMLWidget,
-        'latex': widgets.LatexWidget,
         'text': widgets.TextWidget,
         'text area': widgets.TextareaWidget
     },
